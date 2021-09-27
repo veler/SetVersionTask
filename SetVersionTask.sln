@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetVersionTask", "SetVersionTask\SetVersionTask.csproj", "{1D360F96-BFA1-4F95-A096-FF0C7D501D90}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetVersionTaskTests", "SetVersionTaskTests\SetVersionTaskTests.csproj", "{45DBC3B5-EFFB-4904-9C7B-D8FC9FB80048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,12 +15,11 @@ Global
 		{1D360F96-BFA1-4F95-A096-FF0C7D501D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D360F96-BFA1-4F95-A096-FF0C7D501D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D360F96-BFA1-4F95-A096-FF0C7D501D90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45DBC3B5-EFFB-4904-9C7B-D8FC9FB80048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45DBC3B5-EFFB-4904-9C7B-D8FC9FB80048}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45DBC3B5-EFFB-4904-9C7B-D8FC9FB80048}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45DBC3B5-EFFB-4904-9C7B-D8FC9FB80048}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C283213-D78E-4D2C-93BA-C8505C73510D}
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -23,18 +21,14 @@ namespace SetVersionTask
     {
         private List<CSharpVersionUpdateRule> updateRules;
 
-        public CSharpUpdater(string newAssemblyVersion, string newAssemblyFileVersion = null)
+        public CSharpUpdater(string version)
         {
             this.updateRules = new List<CSharpVersionUpdateRule>();
-            if (!String.IsNullOrEmpty(newAssemblyVersion))
+            if (!String.IsNullOrEmpty(version))
             {
-                this.updateRules.Add(new CSharpVersionUpdateRule("AssemblyVersion", newAssemblyVersion));
+                this.updateRules.Add(new CSharpVersionUpdateRule("AssemblyVersion", version));
+                this.updateRules.Add(new CSharpVersionUpdateRule("AssemblyFileVersion", version));
             }
-            if (!String.IsNullOrEmpty(newAssemblyFileVersion))
-            {
-                this.updateRules.Add(new CSharpVersionUpdateRule("AssemblyFileVersion", newAssemblyFileVersion));
-            }
-            // n.b. there is also AssemblyInformationalVersion
         }
 
         public void UpdateFile(string fileName)
