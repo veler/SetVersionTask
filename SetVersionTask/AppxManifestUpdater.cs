@@ -31,14 +31,14 @@ namespace SetVersionTask
             if (v != null)
             {
                 string newVersion = new VersionUpdateRule(this.versionRule).Update(v);
-                return text.Substring(0, g.Item2) + newVersion + text.Substring(g.Item3);
+                return text.Substring(0, g.Item2) + newVersion + text.Substring(g.Item2 + g.Item3);
             }
             return text;
         }
 
         public static Tuple<string, int, int> GetVersionString(string input)
         {
-            string identityTagStart = "<Identity ";
+            string identityTagStart = "<Identity";
             string identityTagEnd = ">";
             string versionAttributeStart = "Version=\"";
             string versionAttributeEnd = "\"";
