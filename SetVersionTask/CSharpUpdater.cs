@@ -33,13 +33,47 @@ namespace SetVersionTask
 
         public void UpdateFile(string fileName)
         {
-            string[] lines = File.ReadAllLines(fileName);
+            string[] lines = Array.Empty<string>();
+            bool succeeded = false;
+            int i = 0;
+            while (!succeeded && i < 100)
+            {
+                try
+                {
+                    lines = File.ReadAllLines(fileName);
+                    succeeded = true;
+                }
+                catch
+                {
+                    i++;
+                }
+            }
+
+            if (!succeeded)
+            {
+                throw new Exception($"Unable to read the file '{fileName}'");
+            }
+
             var outlines = new List<string>();
             foreach (var line in lines)
             {
                 outlines.Add(UpdateLine(line));
             }
-            File.WriteAllLines(fileName, outlines.ToArray());
+
+            succeeded = false;
+            i = 0;
+            while (!succeeded && i < 100)
+            {
+                try
+                {
+                    File.WriteAllLines(fileName, outlines.ToArray());
+                    succeeded = true;
+                }
+                catch
+                {
+                    i++;
+                }
+            }
         }
 
         private string UpdateLine(string line)

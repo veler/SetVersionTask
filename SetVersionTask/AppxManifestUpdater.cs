@@ -14,9 +14,43 @@ namespace SetVersionTask
 
         public void UpdateFile(string fileName)
         {
-            string text = File.ReadAllText(fileName);
+            string text = string.Empty;
+            bool succeeded = false;
+            int i = 0;
+            while (!succeeded && i < 100)
+            {
+                try
+                {
+                    text = File.ReadAllText(fileName);
+                    succeeded = true;
+                }
+                catch
+                {
+                    i++;
+                }
+            }
+
+            if (!succeeded)
+            {
+                throw new Exception($"Unable to read the file '{fileName}'");
+            }
+
             var ouputText = UpdateTextWithRule(text);
-            File.WriteAllText(fileName, ouputText);
+
+            succeeded = false;
+            i = 0;
+            while (!succeeded && i < 100)
+            {
+                try
+                {
+                    File.WriteAllText(fileName, ouputText);
+                    succeeded = true;
+                }
+                catch
+                {
+                    i++;
+                }
+            }
         }
 
         public string UpdateTextWithRule(string text)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using System;
+using System.Diagnostics;
 
 namespace SetVersionTask
 {
@@ -32,6 +33,7 @@ namespace SetVersionTask
             }
             catch (Exception e)
             {
+                Debugger.Launch();
                 Log.LogError(e.Message);
                 return false;
             }
