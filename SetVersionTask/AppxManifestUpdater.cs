@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.Common;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace SetVersionTask
 {
@@ -16,6 +18,8 @@ namespace SetVersionTask
         {
             string text = string.Empty;
             bool succeeded = false;
+            Random random = new Random();
+            Exception exception = null;
             int i = 0;
             while (!succeeded && i < 100)
             {
@@ -24,15 +28,17 @@ namespace SetVersionTask
                     text = File.ReadAllText(fileName);
                     succeeded = true;
                 }
-                catch
+                catch (Exception ex)
                 {
                     i++;
+                    exception = ex;
+                    Task.Delay(random.Next(100)).Wait();
                 }
             }
 
-            if (!succeeded)
+            if (!succeeded && exception != null)
             {
-                throw new Exception($"Unable to read the file '{fileName}'");
+                throw exception;
             }
 
             var ouputText = UpdateTextWithRule(text);

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace SetVersionTask
 {
@@ -35,6 +37,8 @@ namespace SetVersionTask
         {
             string[] lines = Array.Empty<string>();
             bool succeeded = false;
+            Random random = new Random();
+            Exception exception = null;
             int i = 0;
             while (!succeeded && i < 100)
             {
@@ -43,15 +47,17 @@ namespace SetVersionTask
                     lines = File.ReadAllLines(fileName);
                     succeeded = true;
                 }
-                catch
+                catch (Exception ex)
                 {
                     i++;
+                    exception = ex;
+                    Task.Delay(random.Next(100)).Wait();
                 }
             }
 
-            if (!succeeded)
+            if (!succeeded && exception != null)
             {
-                throw new Exception($"Unable to read the file '{fileName}'");
+                throw exception;
             }
 
             var outlines = new List<string>();

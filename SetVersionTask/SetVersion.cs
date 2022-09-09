@@ -33,7 +33,6 @@ namespace SetVersionTask
             }
             catch (Exception e)
             {
-                Debugger.Launch();
                 Log.LogError(e.Message);
                 return false;
             }
